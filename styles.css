@@ -6,13 +6,16 @@
 
 :root {
  --pink: rgb(200, 114, 155);
+ --black: black;
+ --white: white;
 }
 
+/* header and footer */
 header, footer {
     padding: 30px;
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background-color: rgb(200, 114, 155);
-    color: black;
+    color: var(--black);
     text-align: center;
 }
 
@@ -21,10 +24,11 @@ header h1 {
     font-size: 48px;
 }
 
+/* navigation bar */
 nav {
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-size: 20px;
-    background-color: black;
+    background-color: var(--black);
     display: flex;    
 }
 
@@ -36,9 +40,10 @@ nav a {
 }
 
 nav a:hover , nav a:active {
-    background-color: white;
+    background-color: var(--white);
 }
 
+/* profile picture */
 aside {
     box-sizing: content-box;
     width: 35%;
@@ -54,12 +59,14 @@ aside {
     height: auto;
 }
 
+/* contents */
 main {
     display: flex;
     flex-direction: column;
     flex: 1 0;
     box-sizing: border-box;
-    background-color:rgba(200, 114, 156, 0.561);
+    /* background-color:rgba(200, 114, 156, 0.561); */
+    background: linear-gradient(#f3a5e7c8, #ad83ebcd);
 }
 
 .directory {
@@ -72,52 +79,172 @@ main {
     box-sizing: border-box;
     width: 100%;
     text-align: center;
-    border-bottom: solid black 5px;
+    border-bottom: solid var(--black) 5px;
     margin: 10px;
     padding: 5px;
+    font-size: 140%;
 }
 
 .main-p {
     padding: 0 50px;
 }
 
-ul li {
-    box-sizing: border-box;
-    width: 100%;
-    display: flex;
-    margin-right: 20px;
+
+/* project stuff */
+.project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 45%);
+    grid-gap: 20px;
+    justify-content: center;
 }
 
-ul li img {
-    box-sizing: border-box;
-    width: 100%;
-    border: solid var(--pink) 5px;
-    padding: 2px;
+#p1 {
+    grid-column: span 2;
 }
 
 .placeholder-image {
-    width: 45%;
-    height: 200px;
+    width: 100%;
+    height: 230px;
     object-fit: cover;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 0 100px inset, 0 0 5px grey;
+    border: solid var(--pink) 5px;
+    padding: 2px;
+    box-shadow: 0 0 0 100px inset, 0 0 10px grey;
     transition: box-shadow 1s;
     float: left;
     margin: 10px;
+    opacity: 70%;
+}
+
+.project-list figure a {
+    text-decoration: none;
+    color: var(--black);
+}
+
+figcaption {
+    background-color: var(--pink);
+    padding: 7px;
+    position: absolute;
+    margin: 10px;
+    text-shadow: 1px 1px 1px rgb(106, 106, 106);
 }
 
 .placeholder-image:hover {
     transform: scale(1.1, 1.1);
     z-index: 9;
+    border-radius: 25px;
+    opacity: 100%;
+}
+
+.placeholder-image:hover + figcaption {
+    transform: scale(1.2, 1.1);
+    z-index: 9;
+    /* background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); */
+    background: var(--white);
+    color: var(--pink);
+    border-radius: 25px;
+}
+
+/* contact me section */
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+    display: flex;
+    margin: 0 0 1% 1%;    
+}
+
+.fa-facebook {
+    background: #3B5998;
+    color: var(--white);
+}
+
+.fa-github {
+    background: var(--white);
+    color: var(--black);
+}
+
+.fa-spotify {
+    background: green;
+    color: var(--black);
+}
+
+.fa-google {
+    background: #dd4b39;
+    color: var(--white);
+}
+
+.fa-linkedin {
+    background: #007bb5;
+    color: var(--white);
+}
+
+.fa-twitter {
+    background: #55ACEE;
+    color: var(--white);
+}
+
+.fa-instagram {
+    background: #75512c;
+    color: var(--white);
 }
 
 
+.fa:hover {
+    background: var(--black);
+    color: var(--pink);
+    transform: scale(1.1, 1.1)
+}
+
+#contact {
+    text-align: center;
+}
+
+
+/* resume section */
 #resume {
     text-align: center;
     margin: 20px;
 }
+
+/* footer emoji animation */
+.emoji::after {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+.hearts::after {
+    content: '💗';
+    animation-name: hearts;
+    animation-duration: 3s;
+}
+@keyframes hearts {
+    16.666% {
+        content: '🧡';
+    }
+
+    33.333% {
+        content: '💛';
+    }
+
+    50% {
+        content: '💚';
+    }
+
+    66.666% {
+        content: '💙';
+    }
+
+    83.333% {
+        content: '💜';
+    }
+}
+
 
 @media screen and (max-width: 768px) {
     nav, aside, main {
@@ -131,5 +258,10 @@ ul li img {
         float: none;
         display: flex;
     }
-
+    #p1 {
+        grid-column: span 1;
+    }
+    .project-list {
+        grid-template-columns: 1fr;
+    }
 }
